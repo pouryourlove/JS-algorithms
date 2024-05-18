@@ -8,7 +8,14 @@ function harmlessRansomeNote(noteText, magazineText) {
     magazineObj[word]++;
   });
 
-  console.log(magazineObj);
+  let noteIsPossible = true;
+  noteArr.forEach((word) => {
+    if (magazineObj[word]) {
+      magazineObj[word]--;
+      if (magazineObj[word] < 0) noteIsPossible = false;
+    }
+  });
+  return noteIsPossible;
 }
 
-harmlessRansomeNote("", "this is all the magaine text in the magazine");
+harmlessRansomeNote("this", "this is all the magaine text in the magazine");
