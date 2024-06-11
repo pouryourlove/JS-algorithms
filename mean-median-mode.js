@@ -31,4 +31,25 @@ function getMedian(array) {
   }
   return median;
 }
-function getMode(array) {}
+function getMode(array) {
+  let modeObj = {};
+
+  array.forEach((num) => {
+    if (!modeObj[num]) modeObj[num] = 0;
+    modeObj[num]++;
+  });
+
+  let maxFrequency = 0;
+  let modes = [];
+  for (let num in modeObj) {
+    if (modeObj[num] > maxFrequency) {
+      modes = [num];
+      maxFrequency = modeObj[num];
+    } else if (modeObj[num] === maxFrequency) modes.push(num);
+  }
+  if (modes.length === Object.keys(modeObj).length) modes = [];
+
+  return modes;
+}
+
+console.log(meanMedianMode([1, 2, 3, 4, 5, 4, 6, 1]));
